@@ -14,7 +14,7 @@ public class Verificator {
     }
     public boolean verifyWithCondition(List<String> data,List<String> conditions, List<String> output) {
         List<String >linesBeforeCondition=new ArrayList<>();
-        for (int i=0;i<conditions.size();i+=2) {
+        for (int i=1;i<conditions.size();i+=2) {
             for (String s1:output) {
                 linesBeforeCondition.add(s1);
                 if(s1.equals(conditions.get(i))){
