@@ -23,8 +23,14 @@ public class Verificator {
                 return false;
             }
         }
+        for (String s : output) {
+            if (!data.contains(s)) {
+                return false;
+            }
+        }
         return true;
 
     }
+
 
 }
