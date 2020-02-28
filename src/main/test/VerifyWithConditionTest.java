@@ -32,4 +32,13 @@ public class VerifyWithConditionTest extends TestCase {
         boolean isTestPassed = verificator.verifyWithCondition(data, metadata, output);
         assertFalse(isTestPassed);
     }
+    public void testWithNotCompleteOutput() throws IOException {
+        Reader reader = new Reader();
+        List<String> data = reader.read(new File("data.txt"));
+        List<String> output = reader.read(new File("output1.txt"));
+        List<String> metadata = reader.readMetaData(new File("metadata2.txt"));
+        Verificator verificator=new Verificator();
+        boolean isTestPassed = verificator.verifyWithCondition(data, metadata, output);
+        assertFalse(isTestPassed);
+    }
 }
