@@ -1,5 +1,9 @@
-WEB:>A
-WEB:>B
-WEB: > {"id":6294295475024804864,"name":"bittech.lib.bitflow.web.commands.LoginCommand","type":"request","authKey":null,"timeout":0,"body":{"name":"Krystian","pwdSha256":"dd423f27dce8ae5e8300bd4cd479c62570953578dd968a7634a532ee400aec50"}}
+WEB:>
+A
+WEB:>
+B
+WEB: >
+{"id":6294295475024804864,"name":"bittech.lib.bitflow.web.commands.LoginCommand","type":"request","authKey":null,"timeout":0,"body":{"name":"Krystian","pwdSha256":"dd423f27dce8ae5e8300bd4cd479c62570953578dd968a7634a532ee400aec50"}}
 
-WEB: < {"id":6294295475024804864,"name":"bittech.lib.bitflow.web.commands.LoginCommand","type":"response","authKey":null,"timeout":0,"body":{"authKey":"f0c981bcac764bfab9f034718df17f33590ac4fb"}}
+WEB: <
+{"id":6294295475024804864,"name":"bittech.lib.bitflow.web.commands.LoginCommand","type":"response","authKey":null,"timeout":0,"body":{"authKey":"f0c981bcac764bfab9f034718df17f33590ac4fb"}}

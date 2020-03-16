@@ -1,41 +1,62 @@
 import bittech.lib.utils.Utils;
 import bittech.lib.utils.exceptions.StoredException;
 import bittech.lib.utils.json.JsonBuilder;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 
 public class Reader {
-    public List<String> read(File data) throws IOException {
+    public List<String> read(File data) {
         List<String> lines = new ArrayList<>();
         try (Scanner scanner = new Scanner(data)) {
-            String createdString = "";
+
             while (scanner.hasNext()) {
                 String nextLine = scanner.nextLine();
-                createdString += nextLine;
-
+                lines.add(nextLine);
             }
-            String[] webs = createdString.split("(?=WEB)");
-            for (String s : webs) {
-                lines.add(s);
+
+            return lines;
+        }catch (Exception ex){
+            throw new StoredException("Can't read from file ",ex);
+        }
+
+
+
+    }
+
+    public List<String> convertToData(List<String> stringsToConvert) {
+        String createdString = "";
+        List<String> data=new ArrayList<>();
+        for (String s :stringsToConvert) {
+            if(s.contains("WEB")){
+                if(createdString.isEmpty()){
+                    createdString+=s;
+                }
+                if(createdString.contains("WEB")){
+                    System.out.println(createdString);
+                    data.add(createdString);
+                    createdString=s;
+                }
+            }
+            else {
+                createdString+=s;
             }
 
         }
-        return lines;
+        data.add(createdString);
+        System.out.println(createdString);
+        return data;
 
     }
-    public List<String> readMetaData(File metadata) {
+
+    public List<String> convertToMetadat(List<String> metaDatLines) {
         try {
             List<String> condition = new ArrayList<>();
-            try (Scanner scanner = new Scanner(metadata)) {
-                while (scanner.hasNext()) {
-                    String[] split = scanner.nextLine().split("->");
-                    Utils.prn(split);
-                    condition.add(split[0]);
-                    condition.add(split[1]);
-                }
+            for (String s:metaDatLines) {
+                String[] split = s.split("->");
+                Utils.prn(split);
+                condition.add(split[0]);
+                condition.add(split[1]);
             }
             System.out.println(JsonBuilder.build().toJson(condition));
             return condition;
