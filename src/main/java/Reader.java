@@ -25,27 +25,29 @@ public class Reader {
     }
 
     public List<String> convertToData(List<String> stringsToConvert) {
-        String createdString = "";
-        List<String> data=new ArrayList<>();
-        for (String s :stringsToConvert) {
-            if(s.contains("WEB")){
-                if(createdString.isEmpty()){
-                    createdString+=s;
+        try {
+            String createdString = "";
+            List<String> data = new ArrayList<>();
+            for (String s : stringsToConvert) {
+                if (s.contains("WEB")) {
+                    if (createdString.isEmpty()) {
+                        createdString += s;
+                    } else if (createdString.contains("WEB")) {
+                        System.out.println(createdString);
+                        data.add(createdString);
+                        createdString = s;
+                    }
+                } else {
+                    createdString += s;
                 }
-                else if(createdString.contains("WEB")){
-                    System.out.println(createdString);
-                    data.add(createdString);
-                    createdString=s;
-                }
-            }
-            else {
-                createdString+=s;
-            }
 
+            }
+            data.add(createdString);
+            System.out.println(createdString);
+            return data;
+        }catch (Exception e){
+            throw new StoredException("Can't convert files to data ",e);
         }
-        data.add(createdString);
-        System.out.println(createdString);
-        return data;
 
     }
 
@@ -61,7 +63,7 @@ public class Reader {
             System.out.println(JsonBuilder.build().toJson(condition));
             return condition;
         }catch (Exception e){
-            throw new StoredException("Can 't read metadata !",e);
+            throw new StoredException("Can 't read metadata ",e);
         }
     }
 
