@@ -32,7 +32,7 @@ public class Reader {
                 if(createdString.isEmpty()){
                     createdString+=s;
                 }
-                if(createdString.contains("WEB")){
+                else if(createdString.contains("WEB")){
                     System.out.println(createdString);
                     data.add(createdString);
                     createdString=s;
